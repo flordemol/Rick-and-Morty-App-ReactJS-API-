@@ -2,6 +2,8 @@ import Character from "./Character";
 import {useEffect, useState} from "react";
 import {Row} from "react-bootstrap";
 
+import ClipLoader from "react-spinners/ClipLoader";
+
 const BASE_URL = "https://rickandmortyapi.com/api";
 
 // Componente de lógica (petición HTTP + map)
@@ -35,13 +37,14 @@ const Characters = () => {
     return ( 
         <Row>
             {
-                fetching 
-                    ? <h3>Cargando...</h3>
-                    : characters.map((character) => 
+                fetching ? (
+                    <ClipLoader color={"green"} loading={fetching} css={{display: "block", margin: "0 auto"}} size={150} /> // loading es condición de carga - css es json
+                ) : (
+                    characters.map((character) => 
                         <Character key={character.id} {...character}/> 
                         // "map" siempre se pasa con una "key"
                         // {...character} pasa todas las propiedades y todos los valores. Sin descomponer: character={character} o id={character.id} name={character.name} etc
-                    )
+                ))
             }
         </Row>
      );
