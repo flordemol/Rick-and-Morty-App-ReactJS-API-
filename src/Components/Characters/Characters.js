@@ -34,7 +34,15 @@ const Characters = () => {
     
     return ( 
         <Row>
-            <Character />
+            {
+                fetching 
+                    ? <h3>Cargando...</h3>
+                    : characters.map((character) => 
+                        <Character key={character.id} {...character}/> 
+                        // "map" siempre se pasa con una "key"
+                        // {...character} pasa todas las propiedades y todos los valores. Sin descomponer: character={character} o id={character.id} name={character.name} etc
+                    )
+            }
         </Row>
      );
 }
