@@ -1,8 +1,7 @@
 import Character from "./Character";
+import Loading from "../Loading"
 import {useEffect, useState} from "react";
 import {Row} from "react-bootstrap";
-
-import ClipLoader from "react-spinners/ClipLoader";
 
 const BASE_URL = "https://rickandmortyapi.com/api";
 
@@ -38,7 +37,7 @@ const Characters = () => {
         <Row>
             {
                 fetching ? (
-                    <ClipLoader color={"green"} loading={fetching} css={{display: "block", margin: "0 auto"}} size={150} /> // loading es condición de carga - css es json
+                   <Loading />
                 ) : (
                     characters.map((character) => 
                         <Character key={character.id} {...character}/> 
