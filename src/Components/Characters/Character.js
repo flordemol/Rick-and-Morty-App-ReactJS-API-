@@ -10,7 +10,7 @@ const Character = ({ id, name, gender, status, species, created, image }) => {
                     <Card.Title>
                         {name} - {gender}
                     </Card.Title>
-                    <Card.Text>
+                    <Card.Text className={ status === "Alive" ? "text-info" : "text-danger" }>
                         {status === "Alive" ? "Vivo" : "Muerto"} - {species}
                     </Card.Text>
                     <Card.Text>
