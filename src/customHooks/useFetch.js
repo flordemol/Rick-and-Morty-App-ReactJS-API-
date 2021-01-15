@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
+import { environment } from "../constants"
 
-const BASE_URL = "https://rickandmortyapi.com/api";
 
 // Por defecto API trae objeto, por eso lo agrego en initialState
 // si necesito traer un array se aclara en el llamado de la función, en el 2do parametro
@@ -14,7 +14,7 @@ export const useFetch = ( endpoint, initialState = {} ) => {
     // Se crea esta función porque el useEffect no puede ser async. Se pasa al useEffect luego de resuelta la Promesa
     const fetchData = async () => {
         try {
-            const result = await fetch(`${BASE_URL}/${endpoint}`);
+            const result = await fetch(`${environment.BASE_URL}/${endpoint}`);
             const data = await result.json();
             setData(data);
             setFetching(false);
