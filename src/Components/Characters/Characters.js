@@ -26,7 +26,8 @@ const Characters = () => {
                 }
             </Row>
 
-            <Paginate />
+            {/* Info envía valores "next" y "prev" de la API */}
+            <Paginate {...info}/>
         </>
      );
 }
