@@ -1,7 +1,8 @@
+import { useFetch } from "../../customHooks/useFetch";
+import {Row} from "react-bootstrap";
 import Character from "./Character";
 import Loading from "../Loading";
-import {Row} from "react-bootstrap";
-import { useFetch } from "../../customHooks/useFetch";
+import Paginate from "../Paginate";
 
 // Componente de lógica (petición HTTP + map)
 const Characters = () => {
@@ -10,19 +11,23 @@ const Characters = () => {
   const { info, results: characters } = data; // destructuring del objeto data y renombrar results
     
     return ( 
-        <Row>
-            {
-                // Evaluar estado de loading
-                fetching ? (
-                   <Loading />
-                ) : (
-                    characters.map((character) => 
-                        <Character key={character.id} {...character}/> 
-                        // "map" siempre se pasa con una "key"
-                        // {...character} pasa todas las propiedades y todos los valores. Sin descomponer: character={character} o id={character.id} name={character.name} etc
-                ))
-            }
-        </Row>
+        <>
+            <Row>
+                {
+                    // Evaluar estado de loading
+                    fetching ? (
+                    <Loading />
+                    ) : (
+                        characters.map((character) => 
+                            <Character key={character.id} {...character}/> 
+                            // "map" siempre se pasa con una "key"
+                            // {...character} pasa todas las propiedades y todos los valores. Sin descomponer: character={character} o id={character.id} name={character.name} etc
+                    ))
+                }
+            </Row>
+
+            <Paginate />
+        </>
      );
 }
  
