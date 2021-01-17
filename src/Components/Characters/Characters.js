@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import { useFetch } from "../../customHooks/useFetch";
 import {Row} from "react-bootstrap";
 import Character from "./Character";
 import Loading from "../Loading";
 import Paginate from "../Paginate";
-import { useEffect, useState } from "react";
 
 const BASE_ENDPOINT = "character";
 
