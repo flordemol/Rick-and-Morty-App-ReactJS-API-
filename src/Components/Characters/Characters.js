@@ -3,7 +3,7 @@ import {Row} from "react-bootstrap";
 import Character from "./Character";
 import Loading from "../Loading";
 import Paginate from "../Paginate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BASE_ENDPOINT = "character";
 
@@ -13,6 +13,18 @@ const Characters = ({ search }) => {
     // Estado de la URL para saber qué renderizar. Por defecto será "character" (todos los personajes)
     const [ url, setUrl ] = useState(BASE_ENDPOINT);
     
+    // Actualiza componente cuando llegue search distinto
+    useEffect(() => {
+        console.log("Busca: " + search);
+        
+        // Generar nueva url con parametro de busqueda del search
+        // BASE_URL/character?name=search
+        const newUrl = !search ? BASE_ENDPOINT : `${BASE_ENDPOINT}/?name=${search}`;
+
+        // Setear la URL con la búsqueda para volver a renderizar
+        setUrl(newUrl);
+    }, [search]);
+
     // Petición HTTP
     const [ data, fetching, error ] = useFetch(url); // Pasar la url dinámica para que useFetch renderice según la url (la recibe como parametro endpoint) 
     const { info, results: characters } = data; // destructuring del objeto data y renombrar results

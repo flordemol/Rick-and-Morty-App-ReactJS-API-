@@ -6,7 +6,8 @@ import Search from "./Components/Search";
 function App() {
 
   // Estado inicial de Search (vacío)
-  const [search, setSearch] = useState("");
+  // null para que se envíe FALSE de búsqueda
+  const [search, setSearch] = useState(null);
   
   const handlerSearch = (value) => {
     setSearch(value);

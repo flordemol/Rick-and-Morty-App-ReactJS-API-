@@ -14,6 +14,7 @@ export const useFetch = ( endpoint, initialState = {} ) => {
     // Se crea esta función porque el useEffect no puede ser async. Se pasa al useEffect luego de resuelta la Promesa
     const fetchData = async () => {
         try {
+            setFetching(true); // Para que se vea el spinner mientras busca con search
             const result = await fetch(`${environment.BASE_URL}/${endpoint}`);
             const data = await result.json();
             setData(data);

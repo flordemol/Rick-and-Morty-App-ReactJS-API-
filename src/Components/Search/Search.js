@@ -9,8 +9,6 @@ const Search = ({ handlerSearch }) => {
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-
-        if(characters.trim() === "") return; // Si no hay búsqueda, retorno
         handlerSearch(characters); // Si hay valor en input se le pasa a APP
     }
     
