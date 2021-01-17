@@ -5,12 +5,8 @@ const Paginate = ({next, prev, handlerPages}) => {
     
     // Al tocar los botones se llama a la función que setea una nueva url. Cambia el estado de Characters
     const handlerNext = () => {
-        //console.log(next);
-
         // split devuelve array de 2 posiciones. Destructuro y me quedo con la segunda
         const [,query] = next.split("?");
-        //handlerPages("nueva url next");
-
         // envío nuevo endpoint a Characters
         handlerPages(query);
     }
