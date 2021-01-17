@@ -2,12 +2,16 @@ import {useState} from "react";
 import {Row, Col, Button, Form} from "react-bootstrap";
 
 
-const Search = () => {
+const Search = ({ handlerSearch }) => {
     
+    // Estado de búsqueda
     const [characters, setCharacters] = useState("");
 
     const handlerSubmit = (e) => {
         e.preventDefault();
+
+        if(characters.trim() === "") return; // Si no hay búsqueda, retorno
+        handlerSearch(characters); // Si hay valor en input se le pasa a APP
     }
     
     const handlerInput = (e) => {

@@ -8,7 +8,7 @@ import { useState } from "react";
 const BASE_ENDPOINT = "character";
 
 // Componente de lógica (petición HTTP + map)
-const Characters = () => {
+const Characters = ({ search }) => {
 
     // Estado de la URL para saber qué renderizar. Por defecto será "character" (todos los personajes)
     const [ url, setUrl ] = useState(BASE_ENDPOINT);
