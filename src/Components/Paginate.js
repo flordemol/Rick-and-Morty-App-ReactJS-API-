@@ -16,8 +16,8 @@ const Paginate = ({next, prev, handlerPages}) => {
     }
     
     const handlerPrev = () => {
-        console.log(prev);
-        handlerPages("nueva url prev")
+        const [,query] = prev.split("?");
+        handlerPages(query);
     }
     
     return ( 

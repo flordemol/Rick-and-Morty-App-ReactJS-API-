@@ -5,21 +5,21 @@ import Loading from "../Loading";
 import Paginate from "../Paginate";
 import { useState } from "react";
 
-
+const BASE_ENDPOINT = "character";
 
 // Componente de lógica (petición HTTP + map)
 const Characters = () => {
 
     // Estado de la URL para saber qué renderizar. Por defecto será "character" (todos los personajes)
-    const [ url, setUrl ] = useState("character");
+    const [ url, setUrl ] = useState(BASE_ENDPOINT);
     
     // Petición HTTP
-    const [ data, fetching, error ] = useFetch("character");
+    const [ data, fetching, error ] = useFetch(url); // Pasar la url dinámica para que useFetch renderice según la url (la recibe como parametro endpoint) 
     const { info, results: characters } = data; // destructuring del objeto data y renombrar results
     
     // Se encarga de setear la url. Altera el componente Characters y le indica cuales mostrar
     const handlerPages = ( newUrl ) => {
-        setUrl(newUrl);
+        setUrl(`${BASE_ENDPOINT}?${newUrl}`);
     }
 
     return ( 
