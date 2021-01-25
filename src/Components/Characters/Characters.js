@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFetch } from "../../customHooks/useFetch";
-import {Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import Character from "./Character";
 import Loading from "../Loading";
 import Paginate from "../Paginate";
@@ -8,7 +8,7 @@ import Paginate from "../Paginate";
 const BASE_ENDPOINT = "character";
 
 // Componente de lógica (petición HTTP + map)
-const Characters = ({ search }) => {
+const Characters = ({ search, favorite, handlerFavorite }) => {
 
     // Estado de la URL para saber qué renderizar. Por defecto será "character" (todos los personajes)
     const [ url, setUrl ] = useState(BASE_ENDPOINT);
@@ -36,19 +36,21 @@ const Characters = ({ search }) => {
 
     return ( 
         <>
-            <Row>
-                {
-                    // Evaluar estado de loading
-                    fetching ? (
-                    <Loading />
-                    ) : (
-                        characters.map((character) => 
-                            <Character key={character.id} {...character}/> 
-                            // "map" siempre se pasa con una "key"
-                            // {...character} pasa todas las propiedades y todos los valores. Sin descomponer: character={character} o id={character.id} name={character.name} etc
-                    ))
-                }
-            </Row>
+            <Col md={8}>
+                <Row>
+                    {
+                        // Evaluar estado de loading
+                        fetching ? (
+                        <Loading />
+                        ) : (
+                            characters.map((character) => 
+                                <Character key={character.id} {...character} favorite={favorite} handlerFavorite={handlerFavorite}/> 
+                                // "map" siempre se pasa con una "key"
+                                // {...character} pasa todas las propiedades y todos los valores. Sin descomponer: character={character} o id={character.id} name={character.name} etc
+                        ))
+                    }
+                </Row>
+            </Col>
 
             {/* Info envía valores "next" y "prev" de la API 
             handlerPages envía la url en la que me encuentro*/}
@@ -57,6 +59,4 @@ const Characters = ({ search }) => {
      );
 }
  
-export 
-
-default Characters;
+export default Characters;

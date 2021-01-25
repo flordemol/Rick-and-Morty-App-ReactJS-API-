@@ -1,7 +1,8 @@
 import Characters from "./Components/Characters";
 import { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Search from "./Components/Search";
+import Aside from './Components/Layout/Aside';
 
 function App() {
 
@@ -13,10 +14,19 @@ function App() {
     setSearch(value);
   }
 
+  const [favorite, setFavorite] = useState([]);
+  
+  const handlerFavorite = (value) => {
+    setFavorite(value);
+  }
+
   return (
     <Container>
       <Search handlerSearch={handlerSearch}/> {/*Le paso la función encargada de compartir el estado*/}
-      <Characters search={search}/> {/* Le paso las props "search" */}
+      <Row className="m-0 p-3">
+        <Aside favorite={favorite}/>
+        <Characters search={search} favorite={favorite} handlerFavorite={handlerFavorite}/> {/* Le paso las props "search" */}
+      </Row>
     </Container>
   );
 }
